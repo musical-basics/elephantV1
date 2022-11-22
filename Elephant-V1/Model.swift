@@ -10,7 +10,9 @@ import Foundation
 class Model: NSObject {
     static let shared: Model = Model()
     var stringArray: [String] = []
-//    var name = ""
     var itemArray: [Item] = []
-
+    var inactiveArray: [Item] = []
+    var savedItems: [Item] = []
+    var projectArray: [Project] = []
+    var uniqueNumCounter: Int = 0
 }

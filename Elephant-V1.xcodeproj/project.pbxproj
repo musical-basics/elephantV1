@@ -17,6 +17,10 @@
 		448B1B1C2927205200B00E4E /* Elephant_V1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448B1B1B2927205200B00E4E /* Elephant_V1Tests.swift */; };
 		448B1B262927205200B00E4E /* Elephant_V1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448B1B252927205200B00E4E /* Elephant_V1UITests.swift */; };
 		448B1B282927205200B00E4E /* Elephant_V1UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448B1B272927205200B00E4E /* Elephant_V1UITestsLaunchTests.swift */; };
+		448B1B352927211B00B00E4E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448B1B342927211B00B00E4E /* Item.swift */; };
+		448B1B372927213700B00E4E /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448B1B362927213700B00E4E /* Project.swift */; };
+		448B1B392927216F00B00E4E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448B1B382927216F00B00E4E /* Model.swift */; };
+		448B1B3C2927933B00B00E4E /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448B1B3B2927933B00B00E4E /* ProjectsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,10 @@
 		448B1B212927205200B00E4E /* Elephant-V1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Elephant-V1UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		448B1B252927205200B00E4E /* Elephant_V1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elephant_V1UITests.swift; sourceTree = "<group>"; };
 		448B1B272927205200B00E4E /* Elephant_V1UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elephant_V1UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		448B1B342927211B00B00E4E /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		448B1B362927213700B00E4E /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		448B1B382927216F00B00E4E /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		448B1B3B2927933B00B00E4E /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,10 +113,14 @@
 				448B1B032927205100B00E4E /* SceneDelegate.swift */,
 				448B1B052927205100B00E4E /* ViewController.swift */,
 				448B1B072927205100B00E4E /* Main.storyboard */,
+				448B1B3B2927933B00B00E4E /* ProjectsViewController.swift */,
 				448B1B0D2927205200B00E4E /* Assets.xcassets */,
 				448B1B0F2927205200B00E4E /* LaunchScreen.storyboard */,
 				448B1B122927205200B00E4E /* Info.plist */,
 				448B1B0A2927205100B00E4E /* Elephant_V1.xcdatamodeld */,
+				448B1B342927211B00B00E4E /* Item.swift */,
+				448B1B362927213700B00E4E /* Project.swift */,
+				448B1B382927216F00B00E4E /* Model.swift */,
 			);
 			path = "Elephant-V1";
 			sourceTree = "<group>";
@@ -261,10 +273,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				448B1B3C2927933B00B00E4E /* ProjectsViewController.swift in Sources */,
+				448B1B392927216F00B00E4E /* Model.swift in Sources */,
+				448B1B352927211B00B00E4E /* Item.swift in Sources */,
 				448B1B062927205100B00E4E /* ViewController.swift in Sources */,
 				448B1B022927205100B00E4E /* AppDelegate.swift in Sources */,
 				448B1B042927205100B00E4E /* SceneDelegate.swift in Sources */,
 				448B1B0C2927205100B00E4E /* Elephant_V1.xcdatamodeld in Sources */,
+				448B1B372927213700B00E4E /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

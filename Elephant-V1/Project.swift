@@ -8,8 +8,15 @@
 import Foundation
 
 class Project: Codable {
-    var name: String = ""
-    var completed: Bool = false
-    var priority: Int = 0
+    var name: String
+    var completed: Bool
+    var priority: Int
+    
+    init(name: String, completed: Bool, priority: Int) {
+        self.name = name
+        self.completed = completed
+        self.priority = priority
+    }
+    
     
 }
