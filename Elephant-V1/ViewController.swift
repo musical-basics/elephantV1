@@ -75,7 +75,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        ]
         self.loadItems()
         
-        Model.shared.uniqueNumCounter = Model.shared.itemArray.count + Model.shared.inactiveArray.count
+        Model.shared.uniqueNumCounter = Model.shared.itemArray.count + Model.shared.inactiveArray.count + Model.shared.savedItems.count
         
         for item in Model.shared.projectArray {
             uniqueAllCategories.append(item.name)
@@ -272,7 +272,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func addItemPressed(_ sender: UIButton) {
         Model.shared.uniqueNumCounter += 1
         
-        var tempTitle = self.itemTextView.text!
+//        var tempTitle = self.itemTextView.text!
         var tempCatego = self.projectTextView.text!
         
         var anotherValue = ""
@@ -283,33 +283,67 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             anotherValue = self.projectTextView.text!
         }
         print(anotherValue)
+        var textField = UITextField()
         
-        let newItem = Item(
-            title: self.itemTextView.text!,
-            done: false,
-            catego: anotherValue,
-            uniqueNum: Model.shared.uniqueNumCounter,
-            status: "Inact"
-        )
-        Model.shared.inactiveArray.append(newItem)
-        self.saveItems()
+        let alert = UIAlertController(title: "Add Item With None Project", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add Item With None Project", style: .default) { (action) in
+            
+            
+//            Model.shared.uniqueNumCounter += 1
+            let tempTitle = textField.text!
+            let newItem = Item(
+                title: tempTitle,
+                done: false,
+                catego: anotherValue,
+                uniqueNum: Model.shared.uniqueNumCounter,
+                status: "Inact")
+            
+            Model.shared.inactiveArray.append(newItem)
+            self.saveItems()
+        }
+
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Add Item Here"
+            textField = alertTextField
+        }
+        alert.addAction(action)
         
-//        var newItem = Item(
-//            title: tempTitle,
-//            done: false,
-//            catego: self.categoSelected,
-//            uniqueNum: Model.shared.uniqueNumCounter,
-//            status: "Inact")
-//
-//        Model.shared.inactiveArray.append(newItem)
-        
-        self.itemTextView.text = ""
-        let alert = UIAlertController(title: "Item Added.", message: "", preferredStyle: .alert)
-        present(alert, animated: true, completion: nil)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-            alert.dismiss(animated: true, completion: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            print("Cancelled")
         })
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: {
+            let alert2 = UIAlertController(title: "Alert", message: "Data has been updated", preferredStyle: UIAlertController.Style.alert)
+            alert2.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert2, animated: true, completion: nil)
+        })
+            
+        
+        
+        
+//
+//        let newItem = Item(
+//            title: self.itemTextView.text!,
+//            done: false,
+//            catego: anotherValue,
+//            uniqueNum: Model.shared.uniqueNumCounter,
+//            status: "Inact"
+//        )
+//        Model.shared.inactiveArray.append(newItem)
+//        self.saveItems()
+//
+
+        self.itemTextView.text = ""
+//        let alert2 = UIAlertController(title: "Item Added.", message: "", preferredStyle: .alert)
+//        present(alert2, animated: true, completion: nil)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+//            alert2.dismiss(animated: true, completion: nil)
+//        })
     }
+    
+    
+    
     
     @IBAction func viewProjectsPressed(_ sender: UIButton) {
     }
@@ -447,20 +481,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             var level = (Float(Model.shared.itemArray.count) / Float(tempPriority)) * Float(filteredActiveArray.count)
             var finalLevel = Float(Model.shared.itemArray.count) - level
-
+            
 //            print("the final level for \(cat) is \(finalLevel)")
             if filteredActiveArray.count >= tempPriority || filteredInactiveArray.count == 0 || indexHighest >= finalLevel {
-                print("we're super good")
+                print("Nothing was added for \(cat) with priority \(tempPriority)")
             } else {
                 var tempItem = filteredInactiveArray[0]
                 var tempNum = tempItem.uniqueNum
                 var tempIndex = Model.shared.inactiveArray.firstIndex { $0.uniqueNum == tempNum }
+                
                 print(tempIndex)
                 Model.shared.inactiveArray[tempIndex!].status = "Active"
+                var itemAdded = Model.shared.inactiveArray[tempIndex!]
 //                activeArray = itemArray.filter({ $0.status == "Active"})
-                Model.shared.itemArray.append(Model.shared.inactiveArray[tempIndex!])
+                Model.shared.itemArray.append(itemAdded)
                 Model.shared.inactiveArray.remove(at: tempIndex!)
-                
+                print("we added item \(itemAdded.title) from project \(cat) with priority \(tempPriority)")
             }
         }
         saveItems()
