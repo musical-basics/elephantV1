@@ -184,6 +184,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             Model.shared.itemArray[1].status = "Done"
             Model.shared.savedItems.append(Model.shared.itemArray[1])
             Model.shared.itemArray.remove(at: 1)
+        case 3:
+            Model.shared.itemArray[2].status = "Done"
+            Model.shared.savedItems.append(Model.shared.itemArray[2])
+            Model.shared.itemArray.remove(at: 2)
         default:
             print("Something's wrong, check CompleteItemPressed")
         }
@@ -251,7 +255,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
     
-    
+    // MARK: BACKUP PLIST FILES
+    @IBAction func backupPlistFiles(_ sender: UIButton) {
+        let dateVar = Date.now.formatted(date: .abbreviated, time: .standard)
+        let docuDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        let musicDir = FileManager.default.urls(for: .musicDirectory, in: .allDomainsMask).first
+        
+        let d = musicDir!.path + "/" + dateVar
+        do {
+            try FileManager.default.createDirectory(atPath: d, withIntermediateDirectories: true, attributes: nil)
+            print("Folder created \(d)")
+        } catch (let error) {
+            print("SHITS FUCKED")
+        }
+        
+        let musicDestURL = URL(fileURLWithPath: d)
+        
+        
+        let pListArray = ["/ActiveItems.plist",
+                          "/InactiveItems.plist",
+                          "/SavedItems.plist",
+                          "/Projects.plist"
+        ]
+        
+        for eachFile in pListArray {
+            let bbag = docuDir!.path + "/" + eachFile
+            let bbagDest = URL(fileURLWithPath: bbag)
+            let dbag = musicDir!.path + "/" + dateVar + eachFile
+            let dbagDest = URL(fileURLWithPath: dbag)
+            self.secureCopyItem(at: bbagDest, to: dbagDest)
+            
+        }
+        
+        let alert = UIAlertController(title: "Files Saved.", message: "", preferredStyle: .alert)
+        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+            alert.dismiss(animated: true, completion: nil)
+        })
+
+        
+        
+    }
     
     
     
@@ -349,13 +393,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func showTwoItemsPressed(_ sender: UIButton) {
-        if numItemsShown == 1 {
-            numItemsShown = 2
-            self.itemShow.reloadData()
-        } else {
-            numItemsShown = 1
+        var textField = UITextField()
+        let alert = UIAlertController(title: "Choose Number Of Items Shown", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Choose Number Of Items Shown", style: .default) { (action) in
+            
+            
+            let numItemsSelected = textField.text!
+            let intNumItemsSelected = Int(numItemsSelected)
+            self.numItemsShown = intNumItemsSelected!
             self.itemShow.reloadData()
         }
+
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Enter Integer"
+            textField = alertTextField
+        }
+        alert.addAction(action)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            print("Cancelled")
+        })
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+        
+//        if numItemsShown == 1 {
+//            numItemsShown = 2
+//            self.itemShow.reloadData()
+//        } else {
+//            numItemsShown = 1
+//            self.itemShow.reloadData()
+//        }
     }
     
     
@@ -501,6 +569,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         saveItems()
         self.itemShow.reloadData()
+    }
+    
+    
+    
+    
+//MARK: COPY ITEMS FUNCTION
+    open func secureCopyItem(at srcURL: URL, to dstURL: URL) -> Bool {
+        do {
+            if FileManager.default.fileExists(atPath: dstURL.path) {
+                try FileManager.default.removeItem(at: dstURL)
+            }
+            try FileManager.default.copyItem(at: srcURL, to: dstURL)
+        } catch (let error) {
+            print("Cannot copy item at \(srcURL) to \(dstURL): \(error)")
+            return false
+        }
+        return true
     }
     
 

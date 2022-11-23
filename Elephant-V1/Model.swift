@@ -15,4 +15,9 @@ class Model: NSObject {
     var savedItems: [Item] = []
     var projectArray: [Project] = []
     var uniqueNumCounter: Int = 0
+    
+    
+    func backupItems () {
+        
+    }
 }

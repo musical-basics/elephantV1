@@ -48,9 +48,12 @@
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czi-nm-34f">
                                                         <rect key="frame" x="234.66666666666666" y="0.0" width="115.33333333333334" height="100"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Split And Kick">
+                                                        <buttonConfiguration key="configuration" style="plain" title="Backup PList files">
                                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="backupPlistFiles:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jRU-kx-T4s"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -123,7 +126,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUi-3E-csr">
                                                         <rect key="frame" x="233.33333333333334" y="0.0" width="116.66666666666666" height="111.33333333333333"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Show 2 Items" titleAlignment="center">
+                                                        <buttonConfiguration key="configuration" style="plain" title="Change Num Items Shown" titleAlignment="center">
                                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
                                                         </buttonConfiguration>
                                                         <connections>
