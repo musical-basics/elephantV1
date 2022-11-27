@@ -102,8 +102,8 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6MF-1U-fv3">
                                                 <rect key="frame" x="0.0" y="0.0" width="350" height="111.33333333333333"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klV-NI-7SO">
-                                                        <rect key="frame" x="0.0" y="0.0" width="116.66666666666667" height="111.33333333333333"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klV-NI-7SO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="87.666666666666671" height="111.33333333333333"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Add Item" titleAlignment="center">
                                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
@@ -112,8 +112,16 @@
                                                             <action selector="addItemPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yFv-JU-52W"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xoy-Ki-we0">
-                                                        <rect key="frame" x="116.66666666666666" y="0.0" width="116.66666666666666" height="111.33333333333333"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TaT-OB-b5c">
+                                                        <rect key="frame" x="87.666666666666686" y="0.0" width="87.333333333333314" height="111.33333333333333"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="UNDO ADD"/>
+                                                        <connections>
+                                                            <action selector="undoAddPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ptn-j7-VPQ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xoy-Ki-we0">
+                                                        <rect key="frame" x="175" y="0.0" width="87.666666666666686" height="111.33333333333333"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="View Projects" titleAlignment="center">
                                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
@@ -123,8 +131,8 @@
                                                             <segue destination="Z6A-Uy-b5D" kind="show" id="Brb-8y-F4C"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUi-3E-csr">
-                                                        <rect key="frame" x="233.33333333333334" y="0.0" width="116.66666666666666" height="111.33333333333333"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUi-3E-csr">
+                                                        <rect key="frame" x="262.66666666666669" y="0.0" width="87.333333333333314" height="111.33333333333333"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Change Num Items Shown" titleAlignment="center">
                                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
@@ -193,7 +201,13 @@
                             <constraint firstItem="t6r-LV-cdN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="TJA-kT-Z8j"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rJD-w7-OW2"/>
+                    <navigationItem key="navigationItem" id="rJD-w7-OW2">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="cBq-m9-vjc">
+                            <connections>
+                                <action selector="addItemNavPressed:" destination="BYZ-38-t0r" id="UmH-4h-pY7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="itemShow" destination="gsI-Lf-NMN" id="eUR-4P-PkW"/>
                         <outlet property="itemTextView" destination="A6z-hH-ouo" id="TAl-oF-OQS"/>

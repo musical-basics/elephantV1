@@ -122,7 +122,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     
-//MARK: TABLE VIEW METHODS
+//MARK: - TABLE VIEW METHODS
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return numItemsShown
@@ -131,6 +131,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = itemShow.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath)
+        
+//        let tempReverse = Array(Model.shared.itemArray.reversed())
+//        cell.textLabel?.text = tempReverse[indexPath.row].title
+        
         cell.textLabel?.text = Model.shared.itemArray[indexPath.row].title
         cell.detailTextLabel?.text = Model.shared.itemArray[indexPath.row].catego
         cell.textLabel?.numberOfLines = 0;
@@ -168,6 +172,62 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         present(alert, animated: true, completion: nil)
     }
+    
+    
+    
+//MARK: Navigation Button Items
+    
+    
+    @IBAction func addItemNavPressed(_ sender: UIBarButtonItem) {
+        Model.shared.uniqueNumCounter += 1
+        var tempCatego = self.projectTextView.text!
+        var anotherValue = ""
+        if tempCatego == "" {
+            anotherValue = "None"
+        } else {
+            anotherValue = self.projectTextView.text!
+        }
+        print(anotherValue)
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "Add Item With None Project", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add Item With None Project", style: .default) { (action) in
+            
+            let tempTitle = textField.text!
+            let newItem = Item(
+                title: tempTitle,
+                done: false,
+                catego: anotherValue,
+                uniqueNum: Model.shared.uniqueNumCounter,
+                status: "Inact")
+            
+            Model.shared.inactiveArray.append(newItem)
+            self.saveItems()
+        }
+
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Add Item Here"
+            textField = alertTextField
+        }
+        alert.addAction(action)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            print("Cancelled")
+        })
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: {
+            let alert2 = UIAlertController(title: "Alert", message: "Data has been updated", preferredStyle: UIAlertController.Style.alert)
+            alert2.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert2, animated: true, completion: nil)
+        })
+
+        
+        
+        
+    }
+    
+    
     
     
     
@@ -384,6 +444,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
 //            alert2.dismiss(animated: true, completion: nil)
 //        })
+    }
+    
+    
+    
+    @IBAction func undoAddPressed(_ sender: UIButton) {
+        var currentCount = Model.shared.inactiveArray.count - 1
+        self.itemTextView.text = ""
+        print(Model.shared.inactiveArray[currentCount])
+        
+        Model.shared.inactiveArray.remove(at: currentCount)
+        currentCount = Model.shared.inactiveArray.count - 1
+        print(Model.shared.inactiveArray[currentCount])
+        self.saveItems()
+        Model.shared.uniqueNumCounter -= 1
+        print(Model.shared.uniqueNumCounter)
+        let alert = UIAlertController(title: "Last File Added Removed.", message: "", preferredStyle: .alert)
+        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+            alert.dismiss(animated: true, completion: nil)
+        })
+        
     }
     
     
