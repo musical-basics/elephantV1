@@ -25,8 +25,8 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="L4q-Xt-4VI">
                                                 <rect key="frame" x="0.0" y="0.0" width="350" height="100"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l81-gy-lwJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="115.33333333333333" height="100"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l81-gy-lwJ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="86" height="100"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Complete Item" titleAlignment="center">
                                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
@@ -35,8 +35,16 @@
                                                             <action selector="completeItemPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ewA-0D-DtM"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEU-wY-xHR">
-                                                        <rect key="frame" x="117.33333333333334" y="0.0" width="115.33333333333334" height="100"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCT-Lz-lRK">
+                                                        <rect key="frame" x="88" y="0.0" width="86" height="100"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Uncomplete previous item"/>
+                                                        <connections>
+                                                            <action selector="uncompletePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L7f-F3-gqa"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEU-wY-xHR">
+                                                        <rect key="frame" x="176" y="0.0" width="86" height="100"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Complete and Duplicate">
                                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>
@@ -45,8 +53,8 @@
                                                             <action selector="completeDupePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="19X-QF-z3a"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czi-nm-34f">
-                                                        <rect key="frame" x="234.66666666666666" y="0.0" width="115.33333333333334" height="100"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czi-nm-34f">
+                                                        <rect key="frame" x="264" y="0.0" width="86" height="100"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Backup PList files">
                                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleSubhead"/>

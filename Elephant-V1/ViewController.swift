@@ -231,7 +231,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     
-//MARK: Top 3 Buttons
+//MARK: -  Top 3 Buttons
     
     @IBAction func completeItemPressed(_ sender: UIButton) {
         
@@ -273,6 +273,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             alert.dismiss(animated: true, completion: nil)
         })
     }
+    
+    
+    
+    @IBAction func uncompletePressed(_ sender: UIButton) {
+        let currentSavedItemsCount = Model.shared.savedItems.count
+        Model.shared.itemArray.insert(Model.shared.savedItems[(currentSavedItemsCount - 1)], at: 0)
+        Model.shared.savedItems.remove(at: (currentSavedItemsCount - 1))
+        Model.shared.itemArray[0].status = "Active"
+        saveItems()
+        
+        let alert = UIAlertController(title: "Previous Task Uncompleted.", message: "", preferredStyle: .alert)
+        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+            alert.dismiss(animated: true, completion: nil)
+        })
+//        Model.shared.savedItems.append(Model.shared.itemArray[0])
+//        Model.shared.itemArray.remove(at: 0)
+        
+    }
+    
+    
+    
     
     
     @IBAction func completeDupePressed(_ sender: UIButton) {
